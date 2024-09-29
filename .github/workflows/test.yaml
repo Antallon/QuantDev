@@ -1,0 +1,15 @@
+name: basic
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up CMake
+        uses: jwlawson/actions-setup-cmake@v1
+        with:
+          cmake-version: '3.30.4'  
+      - run: mkdir build && cmake -B build -S . && cmake --build build
+      - run: ./build/tests
+
+      
